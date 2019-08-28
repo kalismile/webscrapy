@@ -26,35 +26,44 @@ def search_user_sec_user_id(keyword):
 
 def search_user_vedio_list(search_user):
     sec_user_id=search_user['data'][0]['user_list'][0]['user_info']['sec_uid']
-    aweme_count=search_user['data'][0]['user_list'][0]['user_info']['aweme_count']
+    # aweme_count=search_user['data'][0]['user_list'][0]['user_info']['aweme_count']
     vedio_list=[]
-    for i in range(math.ceil(aweme_count/10)):
+
+    max_cursor=0
+    while(True):
     # for i in range(2):
         ticks = time.time()
         new_ticks = str(ticks).replace('.', '')
         ts=new_ticks[0:10]
         rticket=new_ticks[0:13]
-        max_cursor=new_ticks[0:14]
-        device_id=random.random()
-        device_id=math.ceil(device_id*100000000000)
-        device_id=str(device_id)
-        max_cursor=new_ticks[0:13]*2
-        url='https://aweme-hl.snssdk.com/aweme/v1/aweme/post/?max_cursor='+max_cursor+'&sec_user_id='+sec_user_id+'&count=10&retry_type=no_retry&iid=80593983692&device_id='+device_id+'&ac=wifi&channel=huawei&aid=1128&app_name=aweme&version_code=730&version_name=7.3.0&device_platform=android&ssmix=a&device_type=HWI-AL00&device_brand=HUAWEI&language=zh&os_api=26&os_version=8.0.0&openudid=dd9979d88efc3c7e&manifest_version_code=730&resolution=1080*2160&dpi=408&update_version_code=7302&_rticket='+rticket+'&app_type=normal&js_sdk_version=1.19.2.0&mcc_mnc=46003&ts='+ts
+
+        url='https://api-hl.amemv.com/aweme/v1/aweme/post/?max_cursor='+str(max_cursor)+'&sec_user_id='+sec_user_id+'&count=10&retry_type=no_retry&iid=80593983692&device_id=58231544547&ac=wifi&channel=huawei&aid=1128&app_name=aweme&version_code=730&version_name=7.3.0&device_platform=android&ssmix=a&device_type=HWI-AL00&device_brand=HUAWEI&language=zh&os_api=26&os_version=8.0.0&openudid=dd9979d88efc3c7e&manifest_version_code=730&resolution=1080*2160&dpi=408&update_version_code=7302&_rticket='+rticket+'&app_type=normal&js_sdk_version=1.19.2.0&mcc_mnc=46003&ts='+ts
         http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',ca_certs=certifi.where())
         r=http.request('GET',url)
         r=r.data
         r=json.loads(r)
+        max_cursor=r['max_cursor']
         for j in range(len(r['aweme_list'])):
-            download_url=r['aweme_list'][j]['video']['play_addr']['url_list'][0]
-            vedio_list.append(download_url)
+            try:
+                download_url=r['aweme_list'][j]['video']['bit_rate'][0]['play_addr']['url_list'][0]
+                vedio_list.append(download_url)
+            except:
+                pass
         time.sleep(3)
+
+        print(max_cursor)
+        print(r['has_more'])
+        if not int(r['has_more']):
+            break
+    # 去重
+    vedio_list_alone=list(set(vedio_list))    
     # 文件写入
     f=open('download_url.txt','a')
-    for i in range(len(vedio_list)):
-        f.write(vedio_list[i])
+    for i in range(len(vedio_list_alone)):
+        f.write(vedio_list_alone[i])
         f.write('\n')
     f.close()
-    return vedio_list
+    return vedio_list_alone
 
 def download_vedio(vedio_list,folder):
     for i in range(len(vedio_list)):
@@ -71,7 +80,7 @@ def download_vedio(vedio_list,folder):
         f=open(folder+'/'+folder+'-'+str(i)+'.mp4','wb')
         f.write(data)
         f.close()
-        time.sleep(10)
+        time.sleep(5)
 
 
 def input_user_name(user_name):
@@ -81,17 +90,8 @@ def input_user_name(user_name):
     download_vedio(vedio_list,user_name)
 
 if __name__ == "__main__":
-    # input_user_name('zh19980123')
-    input_user_name('v1x18605023825')
-    input_user_name('2157023904')
-    input_user_name('908916488')
-    input_user_name('9240977')
-    input_user_name('MiLa520.')
-    input_user_name('LANBOX888')
-    input_user_name('1501052357')
-    input_user_name('C520666888')   
-    input_user_name('cswmwt')   
-    input_user_name('2200930081')   
+
+    input_user_name('2227656401')   
 
 
 
@@ -117,10 +117,6 @@ if __name__ == "__main__":
 # bt.pack()    # 将小部件放置到主窗口中
 
 # top.mainloop()   # 进入消息循环
-#first
-#test git
-#test again
-#again and again
 
 
 
