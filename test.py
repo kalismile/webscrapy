@@ -77,7 +77,7 @@ def search_user_sec_user_id(user_name):
     }
 
     r = requests.post(
-        'https://aweme-hl.snssdk.com/aweme/v1/general/search/single/?',
+        'https://aweme.snssdk.com/aweme/v1/general/search/single/?',
         headers=headers,
         cookies=cookies,
         params=params,
