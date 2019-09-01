@@ -15,6 +15,25 @@ def search_user_sec_user_id(user_name):
         'https': 'http://192.168.124.9:8888',
         'http': 'http://192.168.124.9:8888',
     }
+    headers = {
+        'Accept-Encoding': 'gzip',
+        'User-Agent': 'okhttp/3.10.0.1',
+        'sdk-version': '1',
+        'X-SS-STUB': 'B4652F5852D19A8ECDC4853D0263EEDB',
+        'X-SS-REQ-TICKET': '1567349133929',
+        'X-Gorgon': '0300000040014caa6ed1c213b59d6d8f8b56f701e76fdb0455ad',
+        'X-Khronos': '1567349133'
+
+
+    }
+    cookies = {
+        'odin_tt' : '1c6cd036ccdb7cae02f73e9d64df9e1d5ee96e5cbf4c1308c07af180ddb3b3be195d31dff7bd635ce7989e52900ab996e64795c637d2c73acd97d729e506a873',
+        'qh[360]':'1',
+        'install_id' : '84609604981',
+        'ttreq' : '1$2eab338ad50bd6b83f8b6323dc3f8b49a6007f3a'
+
+    }
+
     params = {
         'os_api': '22',
         'device_type': 'm2',
@@ -59,6 +78,8 @@ def search_user_sec_user_id(user_name):
 
     r = requests.post(
         'https://aweme-hl.snssdk.com/aweme/v1/general/search/single/?',
+        headers=headers,
+        cookies=cookies,
         params=params,
         data=data,
         verify='/home/kali/Desktop/DO_NOT_TRUST_FiddlerRoot.crt',
