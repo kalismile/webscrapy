@@ -56,7 +56,7 @@ def search_user_sec_user_id(user_name):
         'version_code': '720',
         'openudid': '926bb1e95c3d4e10',
         'device_id': '66662367106',
-        'resolution': '1080*1920',
+        'resolution': '1920*1080',
         'os_version': '5.1.1',
         'language': 'zh',
         'device_brand': 'meizu',
