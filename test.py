@@ -20,9 +20,9 @@ def search_user_sec_user_id(user_name):
         'User-Agent': 'okhttp/3.10.0.1',
         'sdk-version': '1',
         'X-SS-STUB': 'B4652F5852D19A8ECDC4853D0263EEDB',
-        'X-SS-REQ-TICKET': '1567349133929',
+        'X-SS-REQ-TICKET':  str(new_ticks[0:13]),
         'X-Gorgon': '0300000040014caa6ed1c213b59d6d8f8b56f701e76fdb0455ad',
-        'X-Khronos': '1567349133',
+        'X-Khronos': str(new_ticks[0:10]),
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 
 
