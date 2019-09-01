@@ -23,7 +23,7 @@ def search_user_sec_user_id(user_name):
         'X-SS-REQ-TICKET': '1567349133929',
         'X-Gorgon': '0300000040014caa6ed1c213b59d6d8f8b56f701e76fdb0455ad',
         'X-Khronos': '1567349133',
-        'charset':'UTF-8'
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 
 
     }
