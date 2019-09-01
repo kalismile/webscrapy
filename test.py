@@ -12,8 +12,8 @@ def search_user_sec_user_id(user_name):
     ticks = time.time()
     new_ticks = str(ticks).replace('.', '')
     proxies = {
-        'https':'http://192.168.124.9:8888',
-        'http':'http://192.168.124.9:8888',
+        'https': 'http://192.168.124.9:8888',
+        'http': 'http://192.168.124.9:8888',
     }
     params = {
         'os_api': '22',
@@ -44,16 +44,17 @@ def search_user_sec_user_id(user_name):
         'mcc_mnc': '46000',
     }
     data = {
-        #  body
-        'cursor': '0',
         'keyword': '051YP',
+        'offset': '0',
         'count': '10',
-        'type': '1',
         'is_pull_refresh': '0',
+        'search_source': 'normal_search',
         'hot_search': '0',
-        'search_source': '',
+        'latitude': '39.916295',
+        'longitude': '116.410344',
         'search_id': '',
         'query_correct_type': '1',
+
     }
 
     r = requests.post(
@@ -63,10 +64,12 @@ def search_user_sec_user_id(user_name):
         verify='/home/kali/Desktop/DO_NOT_TRUST_FiddlerRoot.crt',
         proxies=proxies
     )
-    data={
+    data = {
 
     }
 
     return r.text
+
+
 if __name__ == "__main__":
     print(search_user_sec_user_id('051YP'))
