@@ -76,21 +76,24 @@ def search_user_sec_user_id(user_name):
         'query_correct_type': '1',
 
     }
+    try:
+        r = requests.post(
+            'https://aweme.snssdk.com/aweme/v1/general/search/single/?',
+            headers=headers,
+            cookies=cookies,
+            params=params,
+            data=data,
+            verify='/home/kali/Desktop/DO_NOT_TRUST_FiddlerRoot.crt',
+            proxies=proxies
+        )
+        return r.raise_for_status()
+    except:
+        return "访问错误"
 
-    r = requests.post(
-        'https://aweme.snssdk.com/aweme/v1/general/search/single/?',
-        headers=headers,
-        cookies=cookies,
-        params=params,
-        data=data,
-        verify='/home/kali/Desktop/DO_NOT_TRUST_FiddlerRoot.crt',
-        proxies=proxies
-    )
-    data = {
 
-    }
 
-    return r.text
+
+
 
 
 if __name__ == "__main__":
